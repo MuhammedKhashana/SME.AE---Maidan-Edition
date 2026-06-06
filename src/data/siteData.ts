@@ -59,7 +59,7 @@ export const HERO_BODY: BilingualHtml = {
 };
 
 export const HERO_STATS: StatItem[] = [
-  { countTo: 5, suffix: '+', label: { en: 'Years active', ar: 'سنوات خبرة' } },
+  { countTo: 7, suffix: '+', label: { en: 'Years active', ar: 'سنوات خبرة' } },
   { countTo: 20, suffix: '+', label: { en: 'Partner clubs', ar: 'نادٍ شريك' } },
   { countTo: 10, suffix: '+', label: { en: 'Countries', ar: 'دولة' } },
 ];
