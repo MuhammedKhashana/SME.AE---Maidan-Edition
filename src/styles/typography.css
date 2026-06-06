@@ -1,0 +1,78 @@
+/* ============================================================
+   Typography: stroke text, kinetic headline, billing strip,
+   hero horse drift, clip-line
+   ============================================================ */
+
+/* ---------- Outlined display text ---------- */
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--steel);
+  text-stroke: 2px var(--steel);
+}
+@media (max-width: 640px) {
+  .stroke-text { -webkit-text-stroke-width: 1.2px; }
+}
+
+/* ---------- Kinetic headline clip + entrance ---------- */
+.clip-line {
+  overflow: hidden;
+  display: block;
+}
+.kin span {
+  display: inline-block;
+  transform: translateY(118%);
+}
+.kin.is-in span {
+  animation: kinUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.kin.is-in span:nth-child(2) { animation-delay: 0.08s; }
+.kin.is-in span:nth-child(3) { animation-delay: 0.16s; }
+
+/* ---------- Movie-poster credit strip ---------- */
+.billing {
+  font: 600 clamp(8px, 1.4vw, 11px) / 1.5 ui-monospace, monospace;
+  letter-spacing: 0.18em;
+}
+
+/* ---------- Hero archer-horse drift ---------- */
+.drift {
+  animation: drift3d 11s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+}
+
+/* ---------- Logo 3D hover ---------- */
+nav img[alt="SME"] {
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2), filter 0.4s;
+  transform-style: preserve-3d;
+}
+nav a:hover img[alt="SME"] {
+  transform: rotateY(20deg) rotateX(-8deg) scale(1.08);
+  filter: drop-shadow(0 8px 18px rgba(230, 45, 34, 0.55));
+}
+nav a:hover .nav-wordmark { transform: translateZ(8px); }
+nav a .nav-wordmark { display: inline-block; transition: transform 0.4s; }
+
+/* ---------- Arrow icon translate in buttons ---------- */
+a.btn-red svg,
+button[type="submit"] svg {
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+a.btn-red:hover svg,
+button[type="submit"]:hover svg { transform: translateX(5px); }
+html.is-ar a.btn-red:hover svg,
+html.is-ar button[type="submit"]:hover svg { transform: translateX(-5px) rotate(180deg); }
+
+/* ---------- Input depth on focus ---------- */
+input:focus,
+textarea:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px -16px rgba(230, 45, 34, 0.55);
+}
+
+/* ---------- Billing item hover ---------- */
+.billing span {
+  transition: color 0.3s, transform 0.3s;
+  display: inline-block;
+}
+.billing span:hover { color: #fff; transform: translateY(-1px); }

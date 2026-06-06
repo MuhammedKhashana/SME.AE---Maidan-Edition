@@ -1,0 +1,134 @@
+/* ============================================================
+   Interactive effects: tilt glare, ripple, workcard, marquee,
+   nav, progress bar, ulink underline sweep
+   ============================================================ */
+
+/* ---------- Tilt glare sheen (uses CSS pointer vars) ---------- */
+[data-tilt] {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.1),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  mix-blend-mode: screen;
+  border-radius: inherit;
+}
+[data-tilt]:hover::after { opacity: 1; }
+
+/* ---------- Click ripple ---------- */
+.ripple {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 65%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.8;
+  animation: rippleOut 0.7s ease-out forwards;
+  mix-blend-mode: screen;
+}
+
+/* ---------- Workcard deep hover (child selectors) ---------- */
+.workcard {
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.55s ease,
+              border-color 0.4s ease;
+  will-change: transform;
+}
+.workcard:hover {
+  box-shadow: 0 30px 80px -30px rgba(230, 45, 34, 0.45), 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+  border-color: rgba(230, 45, 34, 0.35);
+}
+.workcard .ph::before { transition: transform 0.6s ease; }
+.workcard:hover .ph::before { transform: scale(1.07); transition: transform 1.4s ease; }
+
+.workcard .wc-meta {
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+.workcard:hover .wc-meta {
+  transform: translateY(0) translateZ(30px);
+  opacity: 1;
+}
+.workcard:hover .wc-title { transform: translateZ(40px); }
+.workcard:hover .wc-tag   { transform: translateZ(25px); }
+.workcard:active {
+  transform: scale(0.985) !important;
+  transition: transform 0.12s ease;
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-slide 38s linear infinite;
+  transition: animation-duration 0.5s;
+}
+.marquee-mask:hover .marquee { animation-duration: 22s; }
+.marquee-mask {
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask:         linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ---------- Nav solid state ---------- */
+[data-nav] {
+  transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s;
+}
+.nav-solid {
+  background: rgba(10, 8, 7, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Scroll progress glow ---------- */
+[data-progress] {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  box-shadow: 0 0 14px rgba(230, 45, 34, 0.7);
+}
+.is-ar [data-progress] { transform-origin: 100% 50%; }
+
+/* ---------- Underline sweep ---------- */
+.ulink { position: relative; }
+.ulink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.35s ease;
+}
+.is-ar .ulink::after { transform-origin: 100% 50%; }
+.ulink:hover::after { transform: scaleX(1); }
+
+/* ---------- Service row slide on hover ---------- */
+section#studio article {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+section#studio article:hover { transform: translateX(6px) translateZ(0); }
+section#studio article .ph  { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+section#studio article:hover .ph { transform: scale(1.02); }
+
+/* ---------- Lang toggle active state ---------- */
+.lang-on { color: #fff !important; }
+
+/* ---------- Bilingual: Arabic font overrides ---------- */
+.is-ar .ar-body { font-family: "Tajawal", sans-serif; }

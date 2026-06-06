@@ -1,0 +1,39 @@
+/* ============================================================
+   Keyframes — referenced by effects.css and typography.css
+   ============================================================ */
+
+@keyframes kinUp {
+  to { transform: translateY(0); }
+}
+
+@keyframes drift3d {
+  0%   { transform: translate3d(0, -8px, 0) rotateZ(-1deg) rotateY(-3deg); }
+  50%  { transform: translate3d(8px, 4px, 0) rotateZ(0.3deg) rotateY(2deg); }
+  100% { transform: translate3d(-4px, 12px, 0) rotateZ(1deg) rotateY(-1deg); }
+}
+
+@keyframes marquee-slide {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes rippleOut {
+  to {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

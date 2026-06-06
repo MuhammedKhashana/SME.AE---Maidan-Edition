@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './animations.css';
+@import './placeholders.css';
+@import './effects.css';
+@import './typography.css';
+
+:root {
+  --red:      #e62d22;
+  --red-deep: #7d140d;
+  --green:    #3ea83a;
+  --steel:    #b9bdc4;
+  --ink:      #0a0807;
+  --ink2:     #100c0a;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent Framer Motion x-transforms from creating horizontal scroll */
+}
+
+body {
+  background: var(--ink);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
