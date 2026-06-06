@@ -7,8 +7,8 @@ import { NAV_LINKS, NAV_CTA } from '@/data/siteData';
 
 export function Navigation() {
   const { lang, isAr, t, setLang } = useLang();
-  const navRef  = useRef<HTMLElement>(null);
-  const ctaRef  = useMagnetic<HTMLAnchorElement>(0.28);
+  const navRef = useRef<HTMLElement>(null);
+  const ctaRef = useMagnetic<HTMLAnchorElement>(0.28);
 
   /* Nav solid state on scroll */
   useEffect(() => {
@@ -25,9 +25,9 @@ export function Navigation() {
     const el = e.currentTarget;
     if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
     el.style.overflow = 'hidden';
-    const r    = el.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
     const size = Math.max(r.width, r.height);
-    const d    = document.createElement('span');
+    const d = document.createElement('span');
     d.className = 'ripple';
     d.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left}px;top:${e.clientY - r.top}px`;
     el.appendChild(d);
@@ -48,9 +48,9 @@ export function Navigation() {
 
         {/* Logo */}
         <a href="#top" onClick={(e) => handleAnchor(e, '#top')} className="flex items-center gap-2.5 shrink-0">
-          <img src="/assets/sme-horse.png" alt="SME" className="h-8 w-8 object-contain" />
+          <img src="/assets/sme-logo-full.png" alt="SME" className="h-12 w-12 object-contain" />
           <span className="font-archivo font-bold tracking-[.18em] text-white text-sm nav-wordmark">
-            SM<span className="text-red">E</span>
+            {/* SM<span className="text-red">E</span> */}
           </span>
         </a>
 

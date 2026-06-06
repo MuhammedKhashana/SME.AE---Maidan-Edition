@@ -10,9 +10,9 @@ export function FooterSection() {
       <div className={`max-w-[1500px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center ${isAr ? 'sm:text-right' : 'sm:text-left'}`}>
 
         <img
-          src="/assets/sme-mark.png"
+          src="/assets/sme-logo-full.png"
           alt="Sport Middle East"
-          className="h-9 object-contain"
+          className="w-10 object-contain"
         />
 
         <div className="text-[11px] tracking-[.16em] uppercase text-steel/45 ar-body">

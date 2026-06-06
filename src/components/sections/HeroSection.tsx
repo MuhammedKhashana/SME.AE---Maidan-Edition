@@ -17,26 +17,26 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
   const { isAr, t } = useLang();
-  const heroRef      = useRef<HTMLElement>(null);
-  const h1Ref        = useRef<HTMLHeadingElement>(null);
-  const ctaRef       = useMagnetic<HTMLAnchorElement>(0.28);
+  const heroRef = useRef<HTMLElement>(null);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const ctaRef = useMagnetic<HTMLAnchorElement>(0.28);
 
   /* Scroll-driven 3D on hero headline */
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const headlineZ  = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const headlineY  = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const headlineZ = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const headlineY = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const headlineRX = useTransform(scrollYProgress, [0, 1], [0, 8]);
   const headlineOp = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
 
   /* Pointer parallax on the horse silhouette */
-  const rawX   = useMotionValue(0);
-  const rawY   = useMotionValue(0);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
   const horseX = useSpring(rawX, { damping: 30, stiffness: 80 });
   const horseY = useSpring(rawY, { damping: 30, stiffness: 80 });
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      rawX.set((e.clientX / window.innerWidth  - 0.5) * -10);
+      rawX.set((e.clientX / window.innerWidth - 0.5) * -10);
       rawY.set((e.clientY / window.innerHeight - 0.5) * -10);
     };
     window.addEventListener('mousemove', handler);
@@ -66,7 +66,7 @@ export function HeroSection() {
 
   /* Kinetic headline entrance — each word rises on load */
   const wordVariants = {
-    hidden:  { y: '118%' as const },
+    hidden: { y: '118%' as const },
     visible: (i: number) => ({
       y: 0,
       transition: { duration: 0.9, ease: EASE, delay: i * 0.06 },
@@ -109,7 +109,8 @@ export function HeroSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 pb-10 sm:pb-14">
+      {/* <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 pb-10 sm:pb-14"> */}
+      <div className="relative z-10 w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-10 pb-10 sm:pb-14 pt-20">
 
         {/* Eyebrow */}
         <motion.div
@@ -129,7 +130,8 @@ export function HeroSection() {
           ref={h1Ref}
           className="font-display text-white leading-[.86] tracking-[-.01em]"
           style={{
-            fontSize: 'clamp(58px,14vw,200px)',
+            // fontSize: 'clamp(58px,14vw,200px)',
+            fontSize: 'clamp(40px,9vw,140px)',
             translateZ: headlineZ,
             translateY: headlineY,
             rotateX: headlineRX,
@@ -198,7 +200,7 @@ export function HeroSection() {
           >
             <span>{t(HERO_CTA_PRIMARY)}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={isAr ? 'rotate-180' : ''}>
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
           <a
